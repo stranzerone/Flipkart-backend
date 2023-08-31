@@ -1,38 +1,42 @@
+import { error } from "console";
 import user from "../models/user_schema.js";
 
 
 export const userSignup = async (req,res)=>{
+const exist = await user.findOne({username:req.body.username});
+if(exist){
 
-const exist = user.findOne(req.body.username);
+    console.log('does not exist');
+    res.send('exist')
+}else{
 
-try{
-    const data = req.body.data;
-    const newuser = new user(data)
+ 
+
+    const newuser = new user(req.body.data)
    await newuser.save();
+   console.log("newUser added")
    res.status(200).json({message:user});
 
-}catch(error){
-    console.log(error)
-    res.status(500).json({message:error.message})
-}
-}
+
+}}
 
 
 
 export const loginUser =  async (req,res)=>{
     try{
 
-     const email= req.body.data.username;
+     const email= req.body.data.Lemail;
      const password = req.body.data.Lpassword;
 
      console.log(req.body,"this is it");
 
-    const response = await user.findOne({username:username,password:password})
+    const response = await user.findOne({email:email,password:password})
     if (response) {
        
-        console.log(response.status);
+        console.log(response,'hhhh');
         res.status(200).send(response);
     } else {
+        console.log('no found')
         res.status(401).send("User not found");
     }
     
