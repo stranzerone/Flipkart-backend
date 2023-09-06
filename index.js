@@ -1,6 +1,6 @@
 import  express  from "express";
 import dotenv from "dotenv"
-import Connections from "../server/database/monogdb.js";
+import Connections from "./database/monogdb.js";
 import DefaultData from "./default.js"
 import router from "./routes/route.js"
 import cors from 'cors'
