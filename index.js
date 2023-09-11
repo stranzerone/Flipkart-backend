@@ -12,7 +12,7 @@ const app = express()
 app.use(bodyParser.json());
 
 
-app.use( "*", cors({origin: ["http://localhost:3000","http://localhost:3001"], credentials: true }));
+app.use( "*", cors({origin: ["http://localhost:3000","https://flipkartclone-9ez7.onrender.com"], credentials: true }));
 
 dotenv.config();
 const URL = process.env.DATABASE;
